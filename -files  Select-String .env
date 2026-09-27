@@ -1,0 +1,13 @@
+[33mcommit 9b66dbf9ddf474b91adf920ff2789e2905f414f1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: noykita86 <noykita86@gmail.com>
+Date:   Sun Sep 27 00:53:44 2026 -0500
+
+    refactor: Page Object Model completo (LoginPage + NewCustomerPage + fixtures)
+
+ fixtures/customer.ts              |  33 [32m+++++[m
+ pages/LoginPage.ts                |  56 [32m++++++++[m
+ pages/NewCustomerPage.ts          |  96 [32m+++++++++++++[m
+ tests/create-customer.spec.ts     | 122 [32m++++[m[31m-------------[m
+ tests/customer-validation.spec.ts | 274 [32m+++++++++++[m[31m---------------------------[m
+ tsconfig.json                     |   2 [32m+[m
+ 6 files changed, 290 insertions(+), 293 deletions(-)
