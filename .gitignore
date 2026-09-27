@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+
+# Reportes de Playwright
+test-results/
+playwright-report/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
