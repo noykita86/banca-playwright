@@ -53,4 +53,23 @@ export class LoginPage {
       this.page.getByRole('link', { name: 'New Customer' })
     ).toBeVisible();
   }
+
+  /**
+   * Hace login esperando que aparezca un alert() nativo del sitio
+   * (caso tipico: credenciales invalidas). Acepta el dialogo y devuelve
+   * el mensaje mostrado para que el test lo valide.
+   *
+   * Uso:
+   *   const msg = await loginPage.loginExpectingError('x', 'y');
+   *   expect(msg).toContain('User or Password is not valid');
+   */
+  async loginExpectingError(username: string, password: string): Promise<string> {
+    const [dialog] = await Promise.all([
+      this.page.waitForEvent('dialog'),
+      this.login(username, password),
+    ]);
+    const message = dialog.message();
+    await dialog.accept();
+    return message;
+  }
 }
