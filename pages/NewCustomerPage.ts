@@ -93,4 +93,26 @@ export class NewCustomerPage {
   getPinField(): Locator {
     return this.pinField;
   }
+    /**
+   * Hace submit esperando que aparezca un alert() nativo del sitio
+   * (caso tipico: email duplicado, u otros errores que Guru99 muestra
+   * como dialogo). Devuelve el mensaje mostrado para que el test lo valide.
+   *
+   * Nota: si un handler global .on('dialog') ya acepta el dialogo
+   * (como hace el beforeEach de customer-validation.spec.ts), el try/catch
+   * evita el error "dialog already handled".
+   */
+  async submitExpectingError(): Promise<string> {
+    const [dialog] = await Promise.all([
+      this.page.waitForEvent('dialog'),
+      this.submit(),
+    ]);
+    const message = dialog.message();
+    try {
+      await dialog.accept();
+    } catch {
+      // El dialogo ya fue aceptado por otro handler. Ignoramos.
+    }
+    return message;
+  }
 }

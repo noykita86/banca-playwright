@@ -1,4 +1,4 @@
-import { test, Page } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { NewCustomerPage, CustomerData } from '../pages/NewCustomerPage';
 import { buildValidCustomer } from '../fixtures/customer';
@@ -166,5 +166,41 @@ test.describe('Guru99 Bank - Validaciones del formulario New Customer', () => {
     const form = await setupAndSubmit(page, { password: '' });
     await form.expectInlineError('Password must not be blank');
     await form.expectNotSuccess();
+  });
+    // ============================================================
+  // VALIDACIONES DE UNICIDAD
+  // ============================================================
+
+  test('Email duplicado: segundo registro con mismo email es rechazado', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.loginAsManager();
+
+    const form = new NewCustomerPage(page);
+
+    // --- 1er registro: cliente con email unico, debe triunfar ---
+    await page.getByRole('link', { name: 'New Customer' }).click();
+    await page.waitForURL(/addcustomerpage/, { timeout: 60000 });
+    await form.waitUntilReady();
+
+    const original = buildValidCustomer();
+    await form.fillForm(original);
+    await form.submit();
+    await form.expectSuccess();
+
+    // --- 2do registro: MISMO email, debe ser rechazado ---
+    await page.getByRole('link', { name: 'New Customer' }).click();
+    await page.waitForURL(/addcustomerpage/, { timeout: 60000 });
+    await form.waitUntilReady();
+
+    const duplicate = buildValidCustomer({ email: original.email });
+    await form.fillForm(duplicate);
+
+    const message = await form.submitExpectingError();
+   // console.log('>>> MENSAJE DEL SITIO:', JSON.stringify(message)); verifico cual es el mensaje exacto
+    expect(message).toContain('Email Address Already Exist');
+
+    await form.expectNotSuccess();
+    await form.expectStillOnForm();
   });
 });
