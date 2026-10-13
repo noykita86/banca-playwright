@@ -26,7 +26,7 @@ const API_BASE = 'https://jsonplaceholder.typicode.com';
 
 test.describe('DEMO - API Testing con APIRequestContext', () => {
 
-  test('GET /posts/1 devuelve un post valido', async ({ request }) => {
+  test('GET /posts/1 devuelve un post valido', { tag: '@smoke' }, async ({ request }) => {
     const response = await request.get(`${API_BASE}/posts/1`);
 
     // Validaciones basicas de la respuesta HTTP.
