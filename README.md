@@ -85,6 +85,31 @@ npm run report        # Abrir reporte HTML del último run
 ```
 
 ---
+### 🚦 Tipos de ejecución
+
+| Comando | Qué corre | Uso |
+| :--- | :--- | :--- |
+| `npm test` | Todos los tests (~42) | Verificación completa |
+| `npm run test:smoke` | Solo tests críticos (`@smoke`) | Antes de cada deploy, fail fast |
+| `npm run test:headed` | Todos, con navegador visible | Debugging visual |
+| `npm run test:ui` | Modo UI interactivo | Desarrollo y exploración |
+| `npm run report` | Abre el reporte HTML | Análisis post-run |
+
+### 🔥 Smoke Tests
+
+Los **smoke tests** son el conjunto mínimo de pruebas críticas que verifican que la aplicación está operativa. Se ejecutan primero en CI/CD para detectar problemas graves rápido.
+
+| Módulo | Test | Por qué es crítico |
+| :--- | :--- | :--- |
+| Login | Credenciales válidas | Sin login no hay nada |
+| New Customer | Registro exitoso | Core del negocio |
+| New Account | Crear cuenta | Core del negocio |
+| Fund Transfer | Validación del formulario | Operación bancaria |
+| API | `GET /posts/1` | Health check del API |
+
+**Ejecutar smoke:**
+```bash
+npm run test:smoke
 
 ## 🏛️ Arquitectura
 

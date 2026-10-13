@@ -14,7 +14,7 @@ test.setTimeout(180000);
  */
 
 test.describe('Guru99 Bank - New Customer', () => {
-  test('registra un nuevo cliente correctamente', async ({ loggedInPage }) => {
+  test('registra un nuevo cliente correctamente', { tag: '@smoke' }, async ({ loggedInPage }) => {
 
     // 1) Navegar al formulario "New Customer".
     await loggedInPage.getByRole('link', { name: 'New Customer' }).click();
