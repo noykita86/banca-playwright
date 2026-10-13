@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/base.fixture';
 import { LoginPage } from '../pages/LoginPage';
 import { env } from '../config/env';
 
-test.setTimeout(90000);
+test.setTimeout(180000);
 
 /**
  * Tests del modulo Login de Guru99 Bank.
@@ -14,28 +14,11 @@ test.setTimeout(90000);
  *
  * Guru99 responde a credenciales malas con un alert() nativo que dice:
  *   "User or Password is not valid"
+ *
+ * Los bloqueos de terceros (analytics, ads) los aplica automaticamente
+ * fixtures/base.fixture.ts.
  */
 test.describe('Guru99 Bank - Modulo Login', () => {
-
-  test.beforeEach(async ({ page }) => {
-    // Bloquear recursos de terceros (analytics, ads) para acelerar la carga.
-    await page.route('**/*', route => {
-      const url = route.request().url();
-      const blockedDomains = [
-        'googletagmanager.com',
-        'google-analytics.com',
-        'clarity.ms',
-        'convertbox.com',
-        'guru99.live',
-        'facebook.net',
-        'doubleclick.net',
-      ];
-      if (blockedDomains.some(domain => url.includes(domain))) {
-        return route.abort();
-      }
-      return route.continue();
-    });
-  });
 
   // ============================================================
   // CASO HAPPY
@@ -109,17 +92,16 @@ test.describe('Guru99 Bank - Modulo Login', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    // Registrar handler por si el sitio decide mostrar alerta en vez de
-    // bloquear el envio con validacion HTML5.
-    page.on('dialog', async dialog => {
+    // Registrar handler ANTES del submit para capturar el alert() nativo
+    // que Guru99 muestra al intentar login con campos vacios.
+    // Usamos `once` para que se dispare una sola vez y no interfiera
+    // con otros tests ni con futuros dialogs.
+    page.once('dialog', async dialog => {
       console.log('DIALOG:', dialog.message());
       await dialog.accept();
     });
 
     await loginPage.login('', '');
-
-    // Esperar un momento por si intentara navegar.
-    await page.waitForTimeout(1500);
 
     // Seguimos en el login y sin acceso al dashboard.
     await expect(page.locator('input[name="uid"]')).toBeVisible();

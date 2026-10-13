@@ -13,3 +13,10 @@ playwright-report/
 .env
 .env.local
 .env.*.local
+
+# Sesion autenticada generada por el fixture de auth
+.auth/
+
+# MCP config (local, no se comparte)
+mcp.json
+.vscode/mcp.json

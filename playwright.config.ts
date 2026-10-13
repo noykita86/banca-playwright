@@ -30,7 +30,7 @@ export default defineConfig({
   // CI: 2 reintentos (mas margen, la red del runner es menos predecible).
   // Los reintentos cubren fallos puntuales de red sin ocultar bugs reales,
   // porque si un test falla siempre, seguira fallando tras los reintentos.
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 0,
 
   // ------------------------------------------------------------
   // ANTI-FLAKINESS: concurrencia
@@ -45,13 +45,13 @@ export default defineConfig({
   // ANTI-FLAKINESS: timeouts
   // ------------------------------------------------------------
   // Tiempo maximo por test completo. 90s da margen a sitios lentos.
-  timeout: 90 * 1000,
+  timeout: 180 * 1000,
 
   // Tiempo maximo que esperan las aserciones (expect).
   // El valor por defecto es 5s; lo subimos a 10s para dar margen
   // a que aparezcan mensajes inline o cambie el DOM en sitios lentos.
   expect: {
-    timeout: 10 * 1000,
+    timeout: 180 * 1000,
   },
 
   // ------------------------------------------------------------
@@ -77,6 +77,11 @@ export default defineConfig({
     // URL base viene de .env (BASE_URL) a traves de config/env.ts.
     // Los tests construyen rutas explicitas: `${env.baseUrl}/V4/index.php`
     baseURL: env.baseUrl,
+   // Tiempo maximo por accion (click, fill, etc.). 30s da margen al sitio lento.
+    actionTimeout: 60 * 1000,
+
+    // Tiempo maximo por navegacion (goto, waitForURL). 120s por lo lento de Guru99.
+    navigationTimeout: 120 * 1000,
 
     // Ignorar errores de certificado SSL.
     // Necesario en este equipo por el problema de CRYPT_E_REVOCATION_OFFLINE

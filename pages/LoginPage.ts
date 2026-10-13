@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { env } from '../config/env';
 
 /**
@@ -13,9 +13,9 @@ import { env } from '../config/env';
  *   await loginPage.loginAsManager();
  */
 export class LoginPage {
-  private readonly uidField;
-  private readonly passwordField;
-  private readonly loginButton;
+  private readonly uidField: Locator;
+  private readonly passwordField: Locator;
+  private readonly loginButton: Locator;
 
   constructor(private readonly page: Page) {
     this.uidField = page.locator('input[name="uid"]');
@@ -31,20 +31,30 @@ export class LoginPage {
     });
     await this.uidField.waitFor({ state: 'visible', timeout: 30000 });
   }
-
-  /** Rellena credenciales y hace click en Login. No espera el dashboard. */
+    /** Rellena credenciales y hace click en Login. No espera el dashboard. */
   async login(username: string, password: string): Promise<void> {
     await this.uidField.fill(username);
     await this.passwordField.fill(password);
-    await this.loginButton.click();
+    // ⭐ `noWaitAfter` evita que el click espere a que la navegacion
+    //    termine (Guru99 puede dejar recursos colgados). La espera
+    //    real se hace con waitForURL despues del click.
+    await this.loginButton.click({ noWaitAfter: true });
   }
 
   /** Login con credenciales del manager desde `.env` + espera el dashboard. */
-  async loginAsManager(): Promise<void> {
+    async loginAsManager(): Promise<void> {
     await this.login(env.user.email, env.user.password);
+
+    // Esperar la URL del dashboard explicitamente (no confiamos
+    // en la espera implicita del click).
+    await this.page.waitForURL(/Managerhomepage/, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000,
+    });
+
     await this.page
       .getByRole('link', { name: 'New Customer' })
-      .waitFor({ state: 'visible', timeout: 30000 });
+      .waitFor({ state: 'visible', timeout: 60000 });
   }
 
   /** Verifica que el login fue exitoso. */

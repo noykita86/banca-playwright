@@ -4,8 +4,7 @@ function required(name: string): string {
   const value = process.env[name];
   if (!value) {
     throw new Error(
-      `❌ Falta la variable de entorno "${name}". ` +
-      `Cópiala desde .env.example a .env`
+      'Falta la variable de entorno "${name}". Copiala desde .env.example a .env'
     );
   }
   return value;

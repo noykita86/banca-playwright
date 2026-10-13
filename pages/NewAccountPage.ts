@@ -16,7 +16,6 @@ export class NewAccountPage {
     this.accountTypeSelect = page.locator('select[name="selaccount"]');
     this.initialDepositField = page.locator('input[name="inideposit"]');
     this.submitButton = page.getByRole('button', { name: 'Submit' });
- // this.submitButton = page.locator('input[name="submit"]');
     this.resetButton = page.locator('input[name="reset"]');
     this.successMessage = page.getByText('Account Generated Successfully!!!');
   }
