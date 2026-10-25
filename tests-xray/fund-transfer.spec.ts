@@ -140,7 +140,7 @@ test.describe('Guru99 Bank - Fund Transfer: validaciones de formato', () => {
     await form.expectStillOnForm();
   });
 
-  test('Description acepta maximo 20 caracteres (MAXLENGTH)', async ({ loggedInPage }) => {
+  test('QT-32 | Description acepta maximo 20 caracteres (MAXLENGTH)', async ({ loggedInPage }) => {
     const form = await goToFundTransfer(loggedInPage);
     const descField = form.getDescriptionField();
     await descField.pressSequentially('123456789012345678901234567890');
@@ -158,7 +158,7 @@ test.describe.serial('Guru99 Bank - Fund Transfer: flujos con cuentas reales', (
   let payerAccount: string;
   let payeeAccount: string;
 
-  test('Setup: crear customer + 2 cuentas', async ({ loggedInPage }) => {
+  test('QT-33 | Setup: crear customer + 2 cuentas', async ({ loggedInPage }) => {
     test.setTimeout(300000);
 
     const customerId = await createCustomerAndGetId(loggedInPage);
@@ -171,7 +171,7 @@ test.describe.serial('Guru99 Bank - Fund Transfer: flujos con cuentas reales', (
     console.log('  Payee:', payeeAccount);
   });
 
-  test('Transferencia valida de $1: exito', async ({ loggedInPage }) => {
+  test('QT-34 | Transferencia valida de $1: exito', async ({ loggedInPage }) => {
     const form = await goToFundTransfer(loggedInPage);
     await form.fillForm({
       payerAccount,

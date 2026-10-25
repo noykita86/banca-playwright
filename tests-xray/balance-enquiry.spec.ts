@@ -35,7 +35,7 @@ test.describe('Guru99 Bank - Modulo Balance Enquiry', () => {
     await form.expectStillOnForm();
   });
 
-  test('Cuenta vacia (inicial) + Submit: alert "Please fill all fields"', async ({ loggedInPage }) => {
+  test('QT-11 | Cuenta vacia (inicial) + Submit: alert "Please fill all fields"', async ({ loggedInPage }) => {
     const form = await setupBalanceEnquiry(loggedInPage);
 
     // Campo vacio sin haber escrito + Submit → alert.

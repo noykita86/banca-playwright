@@ -54,7 +54,7 @@ test.describe('Guru99 Bank - Modulo Login', () => {
     ).not.toBeVisible();
   });
 
-  test('Usuario valido + password invalida: rechazado', async ({ page }) => {
+  test('QT-38 | Usuario valido + password invalida: rechazado', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
@@ -71,7 +71,7 @@ test.describe('Guru99 Bank - Modulo Login', () => {
     ).not.toBeVisible();
   });
 
-  test('Usuario invalido + password valida: rechazado', async ({ page }) => {
+  test('QT-39 | Usuario invalido + password valida: rechazado', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
