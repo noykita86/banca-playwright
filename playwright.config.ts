@@ -21,7 +21,7 @@ import { env } from './config/env';
 export default defineConfig({
 
   // Carpeta donde Playwright busca los tests.
-  testDir: './tests',
+  testDir: './tests-xray',
 
   // ------------------------------------------------------------
   // ANTI-FLAKINESS: reintentos
