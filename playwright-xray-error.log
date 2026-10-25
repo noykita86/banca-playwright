@@ -1,0 +1,59 @@
+Config: [Object: null prototype] {
+  transitional: {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false,
+    legacyInterceptorReqResOrdering: true,
+    advertiseZstdAcceptEncoding: false,
+    validateStatusUndefinedResolves: true
+  },
+  adapter: [ 'xhr', 'http', 'fetch' ],
+  transformRequest: [ [Function: transformRequest] ],
+  transformResponse: [ [Function: transformResponse] ],
+  timeout: 600000,
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+  maxContentLength: 107374182400,
+  maxBodyLength: 107374182400,
+  env: {
+    FormData: [Function: FormData] {
+      LINE_BREAK: '\r\n',
+      DEFAULT_CONTENT_TYPE: 'application/octet-stream'
+    },
+    Blob: [class Blob]
+  },
+  validateStatus: [Function: validateStatus],
+  headers: Object [AxiosHeaders] {
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnQiOiI5OTI2ZmJiNS1kM2UyLTNlODYtYmMzMy04ZTViMWUwMGQzZDYiLCJhY2NvdW50SWQiOiI3MTIwMjA6NzI2NTk5NjItZTlhOC00MWRhLTkzNWMtNDBkYjNjYzFlMDNmIiwiaXNYZWEiOmZhbHNlLCJpYXQiOjE3OTI5NDQ0OTksImV4cCI6MTc5MzAzMDg5OSwiYXVkIjoiMzRGODUwQ0QwQUI1NEJEOTg2NEJGQ0UyNzQ0NDZGODQiLCJpc3MiOiJjb20ueHBhbmRpdC5wbHVnaW5zLnhyYXkiLCJzdWIiOiIzNEY4NTBDRDBBQjU0QkQ5ODY0QkZDRTI3NDQ0NkY4NCJ9.9mV5bfJ5i0ykbX2HOnOLqkWG3ba7X2VzeSVHxD5pWrw',
+    'User-Agent': 'axios/1.20.0',
+    'Content-Length': '429',
+    'Accept-Encoding': 'gzip, compress, deflate, br'
+  },
+  baseURL: 'https://xray.cloud.getxray.app/',
+  proxy: false,
+  method: 'post',
+  url: 'https://xray.cloud.getxray.app/api/v2/import/execution',
+  data: '{"info":{"summary":"[Sun, 25 Oct 2026 17:09:34 GMT] - Automated run","project":"QT","startDate":"2026-10-25T17:09:34.196Z","finishDate":"2026-10-25T17:09:41.584Z","testPlanKey":"QT-3"},"tests":[{"status":"PASSED","testKey":"QT-4","evidence":[],"start":"2026-10-25T17:09:34.659Z","finish":"2026-10-25T17:09:41.353Z","steps":[{"status":"PASSED","comment":"","actualResult":""},{"status":"PASSED","comment":"","actualResult":""}]}]}',
+  allowAbsoluteUrls: true
+}
+
+Status: 400
+Headers: Object [AxiosHeaders] {
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '52',
+  connection: 'keep-alive',
+  date: 'Sun, 25 Oct 2026 16:08:29 GMT',
+  'x-powered-by': 'Express',
+  'surrogate-control': 'no-store',
+  'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+  pragma: 'no-cache',
+  expires: '0',
+  etag: 'W/"34-P8J601i6QWLiDdWYOjawNyTcYdQ"',
+  'x-cache': 'Error from cloudfront',
+  via: '1.1 71e73fb23d5ac474450a8aa0b98555e4.cloudfront.net (CloudFront)',
+  'x-amz-cf-pop': 'ATL59-P17',
+  'x-amz-cf-id': 'XAkVkOzMsGL6sSLMq4mAIf-sYZMGssj0oyMoL1L8ZN7N2UU1JeAtdw=='
+}
+Data: { error: 'Issue with key QT-4 is not of type Test.' }

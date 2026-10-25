@@ -1,0 +1,15 @@
+{
+  "jira": {
+    "url": "https://qa-noyka.atlassian.net",
+    "type": "cloud",
+    "apiVersion": "1.0"
+  },
+  "cloud": {
+    "client_id": "34F850CD0AB54BD9864BFCE274446F84",
+    "client_secret": "c1729a28d4c6b818da00b402c8782a7abe2b2e43ad1c32d9e1baf4f6dc5a6b5c"
+  },
+  "projectKey": "QT",
+  "test_input_folder": "./tests",
+  "test_output_folder": "./tests-xray",
+  "max_test_cases": 100
+}

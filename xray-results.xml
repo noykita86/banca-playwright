@@ -1,0 +1,6 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="7.516452000021935">
+<testsuite name="xray-check.spec.ts" timestamp="2026-10-25T16:28:38.879Z" hostname="chromium" tests="1" failures="0" skipped="0" time="6.82" errors="0">
+<testcase name="QA-1 | Verificacion de integracion con Xray" classname="xray-check.spec.ts" time="6.82">
+</testcase>
+</testsuite>
+</testsuites>

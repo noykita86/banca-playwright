@@ -1,0 +1,453 @@
+[
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "GET /posts/1 devuelve un post valido",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "POST /posts crea un recurso",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "GET /posts/999999 devuelve 404",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Setup via API + validacion en UI (patron hibrido)",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Cuenta inexistente: alert \"Account does not exist\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Cuenta vacia (inicial) + Submit: alert \"Please fill all fields\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Cuenta con letras: inline \"Characters are not allowed\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Cuenta vaciada: inline \"Account Number must not be blank\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "registra un nuevo cliente correctamente",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "PIN con menos de 6 digitos debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "PIN con letras debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "PIN vacio debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "PIN con 7 digitos: el campo limita a 6 por MAXLENGTH",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Nombre con numeros debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Email sin @ debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Fecha de nacimiento en blanco debe ser rechazada",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Address en blanco debe ser rechazada",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "City en blanco debe ser rechazada",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "State en blanco debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Mobile en blanco debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Email en blanco debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Password en blanco debe ser rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Email duplicado: segundo registro con mismo email es rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Payer account con letras: inline \"Characters are not allowed\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Payer account vaciado: inline \"Payers Account Number must not be blank\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Amount con letras: inline \"Characters are not allowed\"",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Description acepta maximo 20 caracteres (MAXLENGTH)",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Setup: crear customer + 2 cuentas",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Transferencia valida de $1: exito",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Saldo insuficiente: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Credenciales validas: entra al dashboard",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Usuario y password invalidos: alerta y rechazo",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Usuario valido + password invalida: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Usuario invalido + password valida: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Campos vacios: no permite acceder al dashboard",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Login con MFA: OTP valido -> dashboard",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Login con MFA: OTP invalido -> rechazo",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Crear cuenta con deposito inicial 500: exito",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Customer ID inexistente: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Initial deposit menor a 500: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  },
+  {
+    "testtype": "Manual",
+    "xray_test_repository_folder": "",
+    "fields": {
+      "summary": "Customer ID con letras: rechazado",
+      "project": {
+        "key": "QT"
+      }
+    },
+    "steps": []
+  }
+]
