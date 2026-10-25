@@ -2,58 +2,58 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [main]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [main]
+    branches: [ main, master, develop ]
   workflow_dispatch:
 
 jobs:
   test:
-    timeout-minutes: 30
+    timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    env:
-      BASE_URL: ${{ secrets.BASE_URL }}
-      TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-      TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-
     steps:
+      # 1) Descarga el codigo del repo.
       - name: Checkout del codigo
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      # 2) Instala Node.js.
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
 
+      # 3) Instala dependencias con instalacion limpia.
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Cachear navegadores de Playwright
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
-
+      # 4) Instala navegadores de Playwright.
       - name: Instalar navegadores de Playwright
         run: npx playwright install --with-deps chromium
 
-      - name: Correr tests de Playwright
+      # 5) Smoke tests primero (fail fast).
+      #    Si estos fallan, el pipeline se corta sin ejecutar los 42.
+      - name: Smoke tests (fail fast)
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+        run: npx playwright test --grep "@smoke"
+
+      # 6) Suite completa (solo si los smoke pasaron).
+      - name: Suite completa
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         run: npx playwright test
 
+      # 7) Sube el reporte HTML como artefacto descargable (siempre).
       - name: Subir reporte HTML
-        if: always()
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 14
-
-      - name: Subir resultados de tests
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results/
-          retention-days: 14
+          retention-days: 30

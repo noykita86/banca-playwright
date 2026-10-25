@@ -87,7 +87,7 @@ async function goToFundTransfer(page: Page): Promise<FundTransferPage> {
 
 test.describe('Guru99 Bank - Fund Transfer: validaciones de formato', () => {
 
-  test('Payer account con letras: inline "Characters are not allowed"', async ({ loggedInPage }) => {
+  test('Payer account con letras: inline "Characters are not allowed"', { tag: '@smoke' }, async ({ loggedInPage }) => {
     const form = await goToFundTransfer(loggedInPage);
 
     const payerField = form.getPayerAccountField();

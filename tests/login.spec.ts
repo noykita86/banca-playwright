@@ -24,7 +24,7 @@ test.describe('Guru99 Bank - Modulo Login', () => {
   // CASO HAPPY
   // ============================================================
 
-  test('Credenciales validas: entra al dashboard', async ({ page }) => {
+  test('Credenciales validas: entra al dashboard', { tag: '@smoke' }, async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.loginAsManager();
