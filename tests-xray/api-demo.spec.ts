@@ -26,7 +26,7 @@ const API_BASE = 'https://jsonplaceholder.typicode.com';
 
 test.describe('DEMO - API Testing con APIRequestContext', () => {
 
-  test('QT-6 | GET /posts/1 devuelve un post valido', async ({ request }) => {
+  test('QT-6 | GET /posts/1 devuelve un post valido', { tag: '@smoke' }, async ({ request }) => {
     const response = await request.get(`${API_BASE}/posts/1`);
 
     // Validaciones basicas de la respuesta HTTP.
@@ -65,7 +65,7 @@ test.describe('DEMO - API Testing con APIRequestContext', () => {
     expect(response.status()).toBe(404);
   });
 
-  test('Setup via API + validacion en UI (patron hibrido)', async ({ request, page }) => {
+   test('QT-47 | Setup via API + validacion en UI (patron hibrido)', async ({ request, page }) => {
     // ---------------------------------------------------------
     // 1) Creamos un recurso via API (rapido, sin navegador).
     // ---------------------------------------------------------

@@ -54,7 +54,7 @@ async function setupNewAccount(loggedInPage: Page): Promise<NewAccountPage> {
 
 test.describe('Guru99 Bank - Modulo New Account', () => {
 
-  test('QT-43 | Crear cuenta con deposito inicial 500: exito', async ({ loggedInPage }) => {
+  test('QT-43 | Crear cuenta con deposito inicial 500: exito', { tag: '@smoke' }, async ({ loggedInPage }) => {
 
     // ⭐ Creamos un Customer fresco automaticamente.
     const customerId = await createCustomerAndGetId(loggedInPage);
