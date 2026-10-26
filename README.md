@@ -9,15 +9,15 @@ Framework de pruebas automatizadas end-to-end sobre el demo bancario **Guru99 Ba
 ---
 
 ## 🚀 Stack
-
-| Herramienta | Versión | Uso |
+ 
+| Herramienta                            | Versión | Uso |
 | :--- | :--- | :--- |
-| [Playwright](https://playwright.dev/) | ^1.63 | Motor de automatización |
-| TypeScript | ^7.0 | Tipado estricto |
-| Node.js | ≥18 | Runtime |
-| dotenv | ^18.0 | Gestión de variables de entorno |
-| [Xray Cloud](https://www.getxray.app/) | API v2 | Gestión de pruebas y trazabilidad |
-| GitHub Actions | N/A | CI/CD (Ejecución automática y reporte) |
+| [Playwright](https://playwright.dev/)  | ^1.63   | Motor de automatización |
+| TypeScript                             | ^7.0    | Tipado estricto |
+| Node.js                                | ≥18     | Runtime |
+| dotenv                                 | ^18.0   | Gestión de variables de entorno |
+| [Xray Cloud](https://www.getxray.app/) | API v2  | Gestión de pruebas y trazabilidad |
+| GitHub Actions                         | N/A     | CI/CD (Ejecución automática y reporte) |
 
 ---
 
@@ -75,7 +75,7 @@ TEST_USER_PASSWORD=tu_password
 # Credenciales para Xray (solo necesarias si reportas localmente)
 XRAY_CLIENT_ID=tu_client_id
 XRAY_CLIENT_SECRET=tu_client_secret
-XRAY_PROJECT_KEY=QT
+XRAY_PROJECT_KEY=tu_proyect_id
 ```
 
 ---
@@ -121,10 +121,10 @@ Cada página del banco tiene su clase en `pages/` que encapsula:
 Los tests **no tocan selectores directamente**; siempre pasan por el Page Object.
 
 ### 2. Fixtures en capas
-| Fixture | Scope | Qué hace |
-| :--- | :--- | :--- |
-| `base.fixture.ts` | automático | Bloquea terceros (analytics/ads) y acepta `dialog`s nativos |
-| `auth.fixture.ts` | por test | Reutiliza sesión autenticada vía `storageState` |
+| Fixture             | Scope      | Qué hace |
+| :--- | :--- | :--- | 
+| `base.fixture.ts`   | automático | Bloquea terceros (analytics/ads) y acepta `dialog`s nativos |
+| `auth.fixture.ts`   | por test   | Reutiliza sesión autenticada vía `storageState` |
 
 Cualquier test que necesite `page` (sin login) importa de `base.fixture`. Los que requieren sesión, de `auth.fixture`.
 
@@ -144,14 +144,14 @@ El fixture `auth.fixture` **hace login una sola vez** y guarda el estado en `.au
 
 ## 🛡️ Estrategias anti-flakiness
 
-| Estrategia | Implementación |
+| Estrategia              | Implementación |
 | :--- | :--- |
-| Timeouts centralizados | `playwright.config.ts` (`actionTimeout`, `navigationTimeout`) |
-| Retries diferenciados | 1 en local, 2 en CI |
-| Trace solo en fallo | `trace: 'on-first-retry'` |
-| Esperas semánticas | `expect(...).toBeVisible()` con auto-retry |
-| Sin `waitForTimeout` | Todas las esperas son por condición, no por tiempo |
-| Bloqueo de terceros | Dominios de analytics/ads bloqueados en `base.fixture` |
+| Timeouts centralizados  | `playwright.config.ts` (`actionTimeout`, `navigationTimeout`) |
+| Retries diferenciados   | 1 en local, 2 en CI |
+| Trace solo en fallo     | `trace: 'on-first-retry'` |
+| Esperas semánticas      | `expect(...).toBeVisible()` con auto-retry |
+| Sin `waitForTimeout`    | Todas las esperas son por condición, no por tiempo |
+| Bloqueo de terceros     | Dominios de analytics/ads bloqueados en `base.fixture` |
 
 ---
 
@@ -159,13 +159,13 @@ El fixture `auth.fixture` **hace login una sola vez** y guarda el estado en `.au
 
 Guru99 es un demo **incompleto a propósito**, y algunas funcionalidades fallan por bugs del propio sitio:
 
-| Módulo | Estado | Motivo |
+| Módulo          | Estado      | Motivo |
 | :--- | :--- | :--- |
-| Login | ✅ OK | Funciona correctamente |
-| New Customer | ✅ OK | Validaciones y creación funcionan |
-| New Account | ⚠️ Parcial | Algunos flujos dependen de cuentas inexistentes |
-| Fund Transfer | ⚠️ Parcial | Depende del estado del backend |
-| Balance Enquiry | ❌ Roto | El sitio devuelve **error 500** al consultar cuentas reales |
+| Login           | ✅ OK       | Funciona correctamente |
+| New Customer    | ✅ OK       | Validaciones y creación funcionan |
+| New Account     | ⚠️ Parcial  | Algunos flujos dependen de cuentas inexistentes |
+| Fund Transfer   | ⚠️ Parcial  | Depende del estado del backend |
+| Balance Enquiry | ❌ Roto     | El sitio devuelve **error 500** al consultar cuentas reales |
 
 Los tests afectados están marcados con `test.fixme` y documentados con un `// TODO` explicando la causa.
 
@@ -179,9 +179,9 @@ Los tests afectados están marcados con `test.fixme` y documentados con un `// T
 El spec `tests/mfa-mock.spec.ts` demuestra **cómo se prueba un flujo de MFA/OTP sin depender del backend real**, usando `page.route()` para interceptar y simular las respuestas de la API.
 
 **Casos cubiertos:**
-| Caso | Resultado esperado |
+| Caso                      | Resultado esperado |
 | :--- | :--- |
-| OTP correcto (`123456`) | Sesión establecida (200 + token) |
+| OTP correcto (`123456`)   | Sesión establecida (200 + token) |
 | OTP incorrecto (`000000`) | Rechazo (401 + `INVALID_OTP`) |
 
 > 📌 En un banco real, el OTP se obtendría dinámicamente desde una API de test, un servicio TOTP o un mock del proveedor MFA. El fixture `auth.fixture.ts` es el punto exacto donde se insertaría esa lógica.
@@ -198,12 +198,13 @@ El spec `tests/api-demo.spec.ts` demuestra el uso del fixture `request` de Playw
 > 📌 Este patrón es el estándar en empresas con QA maduro: *"arrange via API, act via UI, assert via UI/API"*. Reduce el tiempo de setup y evita dependencias entre tests de UI.
 
 ### Aplicación en banca real
-| Escenario | Cómo se probaría |
+
+| Escenario                       | Cómo se probaría |
 | :--- | :--- |
-| Login con MFA/OTP | Mocking con `page.route` + TOTP real en CI |
-| Transferencia entre cuentas | Setup vía API, UI para la acción, API para validar saldo |
-| Consulta de saldo | API para verificar + UI para validar renderizado |
-| Alta de cliente | API para crear, UI para validar el formulario, API para cleanup |
+| Login con MFA/OTP               | Mocking con `page.route` + TOTP real en CI |
+| Transferencia entre cuentas     | Setup vía API, UI para la acción, API para validar saldo |
+| Consulta de saldo               | API para verificar + UI para validar renderizado |
+| Alta de cliente                 | API para crear, UI para validar el formulario, API para cleanup |
 
 ---
 
@@ -221,15 +222,15 @@ El spec `tests/api-demo.spec.ts` demuestra el uso del fixture `request` de Playw
 
 ## 🧠 Decisiones técnicas destacadas
 
-| Decisión | Motivo |
+| Decisión                                             | Motivo |
 | :--- | :--- |
-| `Locator` en vez de `ElementHandle` | Auto-waiting, retries y API moderna |
-| Fixtures en lugar de `beforeEach` | Composición, reuso y aislamiento |
-| `storageState` en vez de login por test | Velocidad + patrón real bancario |
+| `Locator` en vez de `ElementHandle`                  | Auto-waiting, retries y API moderna |
+| Fixtures en lugar de `beforeEach`                    | Composición, reuso y aislamiento |
+| `storageState` en vez de login por test              | Velocidad + patrón real bancario |
 | Factory con overrides | Tests legibles y mantenibles |
-| Variables en `.env` y GitHub Secrets | Seguridad + portabilidad entre entornos |
-| `test.fixme` para bugs externos | No ensucia la suite y documenta |
-| Reportero `playwright-xray` | Trazabilidad directa sin scripts manuales |
+| Variables en `.env` y GitHub Secrets                 | Seguridad + portabilidad entre entornos |
+| `test.fixme` para bugs externos                      | No ensucia la suite y documenta |
+| Reportero `playwright-xray`                          | Trazabilidad directa sin scripts manuales |
 
 ---
 
