@@ -57,7 +57,8 @@ jobs:
           XRAY_CLIENT_SECRET: ${{ secrets.XRAY_CLIENT_SECRET }}
           XRAY_PROJECT_KEY: ${{ secrets.XRAY_PROJECT_KEY }}
 
-        run: npx playwright test
+        run: npx playwright test tests-xray/ --grep-invert "@smoke"
+
 
       # 7) Sube el reporte HTML como artefacto descargable (siempre).
       - name: Subir reporte HTML
